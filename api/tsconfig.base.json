@@ -1,0 +1,34 @@
+{
+    "ts-node": {
+        "compilerOptions": {
+            "module": "CommonJS"
+        }
+    },
+    "compileOnSave": false,
+    "compilerOptions": {
+        "rootDir": ".",
+        "sourceMap": true,
+        "declaration": false,
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "target": "es2015",
+        "module": "esnext",
+        "lib": ["es2020", "dom"],
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+        "baseUrl": ".",
+        "strictPropertyInitialization": false,
+        "paths": {
+            "@api/asset": ["libs/api-asset/src/index.ts"],
+            "@api/auth": ["libs/api-auth/src/index.ts"],
+            "@api/config": ["libs/api-config/src/index.ts"],
+            "@api/core": ["libs/api-core/src/index.ts"],
+            "@api/mail": ["libs/api-mail/src/index.ts"],
+            "@api/product": ["libs/api-product/src/index.ts"],
+            "@api/util": ["libs/api-util/src/index.ts"]
+        }
+    },
+    "exclude": ["node_modules", "tmp"]
+}

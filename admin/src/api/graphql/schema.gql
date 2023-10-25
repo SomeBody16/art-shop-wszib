@@ -1,0 +1,317 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AddressModel {
+  city: String!
+  country: String!
+  createdAt: DateTime!
+  id: String!
+  line1: String!
+  line2: String
+  state: String!
+  updatedAt: DateTime!
+  zipCode: String!
+}
+
+input AdminCreateInput {
+  email: String!
+  roleId: String!
+}
+
+type AdminModel {
+  createdAt: DateTime!
+  email: String!
+  id: String!
+  role: RoleModel!
+  roleId: String!
+  updatedAt: DateTime!
+}
+
+input AdminModelPaginateQuery {
+  filter: JSON
+  limit: Int
+  page: Int
+  search: String
+  searchBy: [String!]
+  sortBy: JSON
+}
+
+type AdminModelPaginated {
+  data: [AdminModel!]!
+  meta: PaginatedResponseMeta!
+}
+
+input AdminPatchInput {
+  email: String
+  roleId: String
+}
+
+type AuthTokenResponse {
+  token: String!
+}
+
+type AuthUrlResponse {
+  url: String!
+}
+
+type CustomerModel {
+  address: AddressModel!
+  addressIds: [String!]!
+  createdAt: DateTime!
+  email: String!
+  id: String!
+  ip: String!
+  name: String!
+  phone: String!
+  surname: String!
+  updatedAt: DateTime!
+}
+
+input CustomerModelPaginateQuery {
+  filter: JSON
+  limit: Int
+  page: Int
+  search: String
+  searchBy: [String!]
+  sortBy: JSON
+}
+
+type CustomerModelPaginated {
+  data: [CustomerModel!]!
+  meta: PaginatedResponseMeta!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+enum DeliveryEstimateUnit {
+  business_day
+  day
+  hour
+  month
+  week
+}
+
+type EmptyResponse {
+  success: Boolean!
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+type Mutation {
+  createAdmin(data: AdminCreateInput!): AdminModel!
+  createProduct(data: ProductCreateInput!): ProductModel!
+  createRole(data: RoleCreateInput!): RoleModel!
+  createShippingRate(data: ShippingRateCreateInput!): ShippingRateModel!
+  deleteAdmin(id: String!): EmptyResponse!
+  deleteOrder(id: String!): EmptyResponse!
+  deleteProduct(id: String!): EmptyResponse!
+  deleteRole(id: String!): EmptyResponse!
+  deleteShippingRate(id: String!): EmptyResponse!
+  login(code: String!, redirectUrl: String!, state: String!): AuthTokenResponse!
+  patchAdmin(data: AdminPatchInput!, id: String!): AdminModel!
+  patchProduct(data: ProductPatchInput!, id: String!): ProductModel!
+  patchRole(data: RolePatchInput!, id: String!): RoleModel!
+  patchShippingRate(data: ShippingRatePatchInput!, id: String!): ShippingRateModel!
+}
+
+type OrderModel {
+  createdAt: DateTime!
+  currency: String!
+  customerSnapshot: CustomerModel!
+  id: String!
+  paymentId: String!
+  price: Float!
+  status: OrderStatus!
+  updatedAt: DateTime!
+}
+
+input OrderModelPaginateQuery {
+  filter: JSON
+  limit: Int
+  page: Int
+  search: String
+  searchBy: [String!]
+  sortBy: JSON
+}
+
+type OrderModelPaginated {
+  data: [OrderModel!]!
+  meta: PaginatedResponseMeta!
+}
+
+enum OrderStatus {
+  canceled
+  complete
+  processing
+  waiting_for_payment
+}
+
+type PaginatedResponseMeta {
+  currentPage: Int!
+  filter: JSON
+  itemsPerPage: Int!
+  search: String
+  searchBy: [String!]
+  sortBy: JSON!
+  totalItems: Int!
+  totalPages: Int!
+}
+
+input ProductCreateInput {
+  available: Float
+  currency: String!
+  description: String!
+  imageIds: [String!]!
+  name: String!
+  price: Float!
+  publishedAt: DateTime
+  shippingCountries: [String!]!
+  slug: String!
+}
+
+type ProductModel {
+  available: Float
+  createdAt: DateTime!
+  currency: String!
+  description: String!
+  id: String!
+  imageIds: [String!]!
+  name: String!
+  price: Float!
+  publishedAt: DateTime
+  shippingCountries: [String!]!
+  slug: String!
+  updatedAt: DateTime!
+}
+
+input ProductModelPaginateQuery {
+  filter: JSON
+  limit: Int
+  page: Int
+  search: String
+  searchBy: [String!]
+  sortBy: JSON
+}
+
+type ProductModelPaginated {
+  data: [ProductModel!]!
+  meta: PaginatedResponseMeta!
+}
+
+input ProductPatchInput {
+  available: Float
+  currency: String
+  description: String
+  imageIds: [String!]
+  name: String
+  price: Float
+  publishedAt: DateTime
+  shippingCountries: [String!]
+}
+
+type Query {
+  getAdmin(id: String!): AdminModel!
+  getAdmins(query: AdminModelPaginateQuery): AdminModelPaginated!
+  getAuthUrl(redirectUrl: String!): AuthUrlResponse!
+  getCustomer(id: String!): CustomerModel!
+  getCustomers(query: CustomerModelPaginateQuery): CustomerModelPaginated!
+  getOrder(id: String!): OrderModel!
+  getOrders(query: OrderModelPaginateQuery): OrderModelPaginated!
+  getProduct(id: String!): ProductModel!
+  getProducts(query: ProductModelPaginateQuery): ProductModelPaginated!
+  getRole(id: String!): RoleModel!
+  getRoles(query: RoleModelPaginateQuery): RoleModelPaginated!
+  getShippingRate(id: String!): ShippingRateModel!
+  getShippingRates(query: ShippingRateModelPaginateQuery): ShippingRateModelPaginated!
+}
+
+input RoleCreateInput {
+  name: String!
+  permissions: [RolePermission!]!
+}
+
+type RoleModel {
+  createdAt: DateTime!
+  id: String!
+  name: String!
+  permissions: [RolePermission!]!
+  updatedAt: DateTime!
+}
+
+input RoleModelPaginateQuery {
+  filter: JSON
+  limit: Int
+  page: Int
+  search: String
+  searchBy: [String!]
+  sortBy: JSON
+}
+
+type RoleModelPaginated {
+  data: [RoleModel!]!
+  meta: PaginatedResponseMeta!
+}
+
+input RolePatchInput {
+  name: String
+  permissions: [RolePermission!]
+}
+
+enum RolePermission {
+  LOGIN
+  SUPER_ADMIN
+}
+
+input ShippingRateCreateInput {
+  currency: String!
+  deliveryEstimateMaxUnit: DeliveryEstimateUnit!
+  deliveryEstimateMaxVal: Int!
+  deliveryEstimateMinUnit: DeliveryEstimateUnit!
+  deliveryEstimateMinVal: Int!
+  name: String!
+  price: Int!
+}
+
+type ShippingRateModel {
+  createdAt: DateTime!
+  currency: String!
+  deliveryEstimateMaxUnit: DeliveryEstimateUnit!
+  deliveryEstimateMaxVal: Int!
+  deliveryEstimateMinUnit: DeliveryEstimateUnit!
+  deliveryEstimateMinVal: Int!
+  id: String!
+  name: String!
+  price: Int!
+  updatedAt: DateTime!
+}
+
+input ShippingRateModelPaginateQuery {
+  filter: JSON
+  limit: Int
+  page: Int
+  search: String
+  searchBy: [String!]
+  sortBy: JSON
+}
+
+type ShippingRateModelPaginated {
+  data: [ShippingRateModel!]!
+  meta: PaginatedResponseMeta!
+}
+
+input ShippingRatePatchInput {
+  currency: String
+  deliveryEstimateMaxUnit: DeliveryEstimateUnit
+  deliveryEstimateMaxVal: Int
+  deliveryEstimateMinUnit: DeliveryEstimateUnit
+  deliveryEstimateMinVal: Int
+  name: String
+  price: Int
+}
